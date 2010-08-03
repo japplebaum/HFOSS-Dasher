@@ -643,10 +643,6 @@ void show_game_file_dialog(GtkWidget *pButton, GtkWidget *pWidget, gpointer pDat
 	}
 }
 
-void quit_game_mode(GtkWidget *pButton, GtkWidget *pWidget, gpointer pData) {
-    DasherMainPrivate *pPrivate = DASHER_MAIN_GET_PRIVATE((DasherMain*)pData);
-}
-
 /**
  * Toggle game mode on and off. Toggling on causes a dialog box to be displayed
  * welcoming the user to game mode and prompting them to specify a file to play with.
@@ -691,8 +687,6 @@ void dasher_main_toggle_game_mode(DasherMain *pSelf) {
 
     GtkWidget *pNoButton = gtk_dialog_add_button(GTK_DIALOG(pDialog), GTK_STOCK_NO, GTK_RESPONSE_REJECT);
     GtkWidget *pYesButton = gtk_dialog_add_button(GTK_DIALOG(pDialog), GTK_STOCK_YES, GTK_RESPONSE_ACCEPT);
-
-    //g_signal_connect(pYesButton, "button-press-event", G_CALLBACK(quit_game_mode), (gpointer)pSelf);
 
 		switch(gtk_dialog_run(GTK_DIALOG(pDialog))) {
 		case GTK_RESPONSE_REJECT:
