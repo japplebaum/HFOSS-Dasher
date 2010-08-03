@@ -623,7 +623,7 @@ void show_game_file_dialog(GtkWidget *pButton, GtkWidget *pWidget, gpointer pDat
 				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
 				      NULL);
 	
-	gtk_window_set_destroy_with_parent(GTK_WINDOW(pFileDialog), true);
+  gtk_window_set_destroy_with_parent(GTK_WINDOW(pFileDialog), true);
 
   gint response = gtk_dialog_run(GTK_DIALOG(pFileDialog));
 
@@ -634,9 +634,13 @@ void show_game_file_dialog(GtkWidget *pButton, GtkWidget *pWidget, gpointer pDat
 		init_game_mode(filename, pSelf);
 
 		gtk_widget_destroy(GTK_WIDGET(objRefs->first));	
-	} else if( response == GTK_RESPONSE_CANCEL ) {
-    gtk_widget_destroy(GTK_WIDGET(objRefs->first));
-  }
+	} 
+	else if( response == GTK_RESPONSE_CANCEL ) {
+		gtk_widget_destroy(GTK_WIDGET(objRefs->first));
+	}
+	else if ( response == GTK_RESPONSE_DELETE_EVENT ) {
+		gtk_widget_destroy(GTK_WIDGET(pFileDialog));
+	}
 }
 
 void quit_game_mode(GtkWidget *pButton, GtkWidget *pWidget, gpointer pData) {
